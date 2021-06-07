@@ -31,6 +31,14 @@ namespace TodoApi
             
             services.AddDbContext<TodoContext>(options =>
                 options.UseNpgsql(Configuration.GetConnectionString("DefaultConnection")));
+
+
+            using (var scope = services.BuildServiceProvider().CreateScope())
+            {
+                var dbContext = scope.ServiceProvider.GetRequiredService<TodoContext>();
+                dbContext.Database.Migrate();
+            }
+
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
