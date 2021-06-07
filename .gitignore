@@ -334,5 +334,5 @@ ASALocalRun/
 .localhistory/
 
 # Project specific
-Src/postgres_data
+src/postgres_data
 .env
